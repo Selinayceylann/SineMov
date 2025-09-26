@@ -61,7 +61,7 @@ struct HomeView: View {
                                                     }
                                                 }
                                                 
-                                                Text(movie.name ?? "Movie")
+                                                Text(movie.name ?? "movie")
                                                     .lineLimit(1)
                                                     .foregroundColor(.primary)
                                                 

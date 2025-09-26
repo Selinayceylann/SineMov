@@ -48,7 +48,7 @@ struct DetailView: View {
                     }
                     .padding(.top, 16)
 
-                    Text(movie.name ?? "Movie")
+                    Text(movie.name ?? "movie")
                         .font(.custom("Lato-Bold", size: 28))
                         .foregroundColor(AppColor.mainColor)
                         .multilineTextAlignment(.center)
@@ -57,7 +57,7 @@ struct DetailView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "tag.fill")
                                 .foregroundColor(.purple)
-                            Text(movie.category ?? "Unknown")
+                            Text(movie.category ?? "category")
                                 .foregroundColor(.black)
                         }
                         .padding(.horizontal, 24)
@@ -105,7 +105,7 @@ struct DetailView: View {
                                     .font(.custom("Lato-Bold", size: 18))
                                     .foregroundColor(.black)
                             }
-                            Text(movie.director ?? "Unknown")
+                            Text(movie.director ?? "director")
                                 .lineLimit(2)
                         }
                         .frame(maxWidth: .infinity, minHeight: 60)
@@ -122,7 +122,7 @@ struct DetailView: View {
                                 .font(.custom("Lato-Bold", size: 18))
                         }
                         
-                        Text(movie.description ?? "No description available.")
+                        Text(movie.description ?? "description")
                             .foregroundColor(.primary)
                             .lineSpacing(4)
                             .padding()

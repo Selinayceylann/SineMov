@@ -55,7 +55,7 @@ struct BasketView: View {
                                 }
 
                                 VStack(alignment: .leading, spacing: 8) {
-                                    Text(item.name ?? "Unknown")
+                                    Text(item.name ?? "name")
                                         .font(.custom("Lato-Bold", size: 20))
                                         .foregroundColor(.primary)
                                     HStack {
@@ -115,7 +115,7 @@ struct BasketView: View {
                 await viewmodel.getMovieCart(userName: userName)
             }
         }
-        .navigationTitle("Basket")
+        .navigationTitle("Cart")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
