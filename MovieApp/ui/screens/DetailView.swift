@@ -131,6 +131,7 @@ struct DetailView: View {
                             .foregroundColor(.primary)
                             .lineSpacing(4)
                             .padding()
+                            .frame(maxWidth: .infinity)
                             .background(AppColor.mainColor.opacity(0.5))
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
