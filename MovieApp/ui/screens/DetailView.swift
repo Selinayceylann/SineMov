@@ -90,7 +90,12 @@ struct DetailView: View {
                                     .font(.custom("Lato-Bold", size: 18))
                                     .foregroundColor(.black)
                             }
-                            Text("\(movie.year ?? 0)")
+                            if let year = movie.year {
+                                Text(String(format: "%d", year))
+                            } else {
+                                Text("year")
+                            }
+
                         }
                         .frame(maxWidth: .infinity, minHeight: 60)
                         .padding()
@@ -202,7 +207,6 @@ struct DetailView: View {
                         Text("SineMov")
                     }
                     .foregroundColor(.white)
-                    .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                 }
             }

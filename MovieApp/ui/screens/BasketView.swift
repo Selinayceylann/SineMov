@@ -127,7 +127,6 @@ struct BasketView: View {
                         Text("SineMov")
                     }
                     .foregroundColor(.white)
-                    .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                 }
             }
