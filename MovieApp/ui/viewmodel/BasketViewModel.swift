@@ -13,6 +13,12 @@ class BasketViewModel: ObservableObject {
     private let repository = MoviesRepository()
     
     @Published var movieCartList = [MovieCart]()
+    
+    var totalPrice: Double {
+        groupedCart.reduce(0) { sum, item in
+            sum + (Double(item.price ?? 0) * Double(item.orderAmount ?? 0))
+        }
+    }
 
     var groupedCart: [MovieCart] {
         var dict: [String: MovieCart] = [:]
@@ -58,10 +64,10 @@ class BasketViewModel: ObservableObject {
     func getMovieCart(userName: String) async {
         do {
             movieCartList = try await repository.getMovieCart(userName: userName)
-            print("Sepet güncellendi. Toplam öğe sayısı: \(movieCartList.count)")
+            print("Toplam: \(movieCartList.count)")
 
             for item in movieCartList {
-                print("Film: \(item.name ?? "Unknown"), Adet: \(item.orderAmount ?? 0), CartID: \(item.cartId ?? -1)")
+                print("Film: \(item.name ?? "name"), Adet: \(item.orderAmount ?? 0), CartID: \(item.cartId ?? -1)")
             }
 
         } catch {

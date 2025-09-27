@@ -35,7 +35,7 @@ class DetailViewModel: ObservableObject {
             showAlert = true
             
         } catch {
-            alertMessage = "Film sepete eklenirken hata oluştu: \(error.localizedDescription)"
+            alertMessage = "Hata: \(error.localizedDescription)"
             showAlert = true
         }
         

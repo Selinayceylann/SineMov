@@ -21,7 +21,7 @@ struct BasketView: View {
                         .scaledToFit()
                         .frame(width: 80, height: 80)
                         .foregroundColor(.gray)
-                    Text("Your cart is empty")
+                    Text("Cart is empty")
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
                 }
@@ -31,7 +31,6 @@ struct BasketView: View {
                     VStack(spacing: 16) {
                         ForEach(viewmodel.groupedCart) { item in
                             HStack(spacing: 12) {
-                                // Film görseli
                                 AsyncImage(url: URL(string: "http://kasimadalan.pe.hu/movies/images/\(item.image ?? "")")) { phase in
                                     switch phase {
                                     case .empty:
@@ -103,11 +102,26 @@ struct BasketView: View {
                             .padding()
                             .background(Color(AppColor.mainColor).opacity(0.5))
                             .clipShape(RoundedRectangle(cornerRadius: 16))
-
                         }
                     }
                     .padding()
                 }
+
+                HStack {
+                    Text("Total: $\(viewmodel.totalPrice, specifier: "%.2f")")
+                    Spacer()
+                    Button(action: {
+                        print("Confirm")
+                    }) {
+                        Text("Confirm Cart")
+                            .foregroundColor(.white)
+                            .frame(width: 150, height: 50)
+                            .background(AppColor.mainColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                    }
+                }
+                .padding()
+                .background(Color(.systemGray6))
             }
         }
         .onAppear {
@@ -133,6 +147,7 @@ struct BasketView: View {
         }
     }
 }
+
 
 #Preview {
     BasketView()

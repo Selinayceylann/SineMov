@@ -135,52 +135,63 @@ struct DetailView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
 
-                    HStack(spacing: 16) {
-                        HStack(spacing: 20) {
-                            Button(action: { if quantity > 1 { quantity -= 1 } }) {
-                                Image(systemName: "minus.circle.fill")
-                                    .foregroundColor(.gray)
-                            }
-                            Text("\(quantity)")
-                                .frame(minWidth: 30)
-                            Button(action: { if quantity < 20 { quantity += 1 } }) {
-                                Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(.red)
-                            }
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("Price: \( (movie.price ?? 0) * quantity ) $")
+                                .font(.custom("Lato-Bold", size: 18))
+                                .foregroundColor(.black)
+                                .padding()
+                                .background(AppColor.mainColor.opacity(0.5))
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 12)
-                        .background(AppColor.mainColor.opacity(0.5))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        
-                        Spacer()
 
-                        Button(action: {
-                            Task {
-                                await viewmodel.insertMovie(
-                                    name: movie.name ?? "",
-                                    image: movie.image ?? "",
-                                    price: movie.price ?? 0,
-                                    category: movie.category ?? "",
-                                    rating: movie.rating ?? 0.0,
-                                    year: movie.year ?? 0,
-                                    director: movie.director ?? "",
-                                    description: movie.description ?? "",
-                                    orderAmount: quantity,
-                                    userName: "selinay_ceylan"
-                                )
-                                showAlert = true
+                        HStack(spacing: 16) {
+                            HStack(spacing: 20) {
+                                Button(action: { if quantity > 1 { quantity -= 1 } }) {
+                                    Image(systemName: "minus.circle.fill")
+                                        .foregroundColor(.gray)
+                                }
+                                Text("\(quantity)")
+                                    .frame(minWidth: 30)
+                                Button(action: { if quantity < 20 { quantity += 1 } }) {
+                                    Image(systemName: "plus.circle.fill")
+                                        .foregroundColor(.red)
+                                }
                             }
-                        }) {
-                            HStack {
-                                Image(systemName: "cart.badge.plus")
-                                Text("Add to Cart")
-                                    .font(.custom("Lato-Bold", size: 18))
-                            }
-                            .foregroundColor(.white)
-                            .frame(width: 150, height: 50)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 12)
                             .background(AppColor.mainColor.opacity(0.5))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            
+                            Spacer()
+
+                            Button(action: {
+                                Task {
+                                    await viewmodel.insertMovie(
+                                        name: movie.name ?? "",
+                                        image: movie.image ?? "",
+                                        price: movie.price ?? 0,
+                                        category: movie.category ?? "",
+                                        rating: movie.rating ?? 0.0,
+                                        year: movie.year ?? 0,
+                                        director: movie.director ?? "",
+                                        description: movie.description ?? "",
+                                        orderAmount: quantity,
+                                        userName: "selinay_ceylan"
+                                    )
+                                    showAlert = true
+                                }
+                            }) {
+                                HStack {
+                                    Image(systemName: "cart.badge.plus")
+                                    Text("Add to Cart")
+                                        .font(.custom("Lato-Bold", size: 18))
+                                }
+                                .foregroundColor(.white)
+                                .frame(width: 150, height: 50)
+                                .background(AppColor.mainColor)
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                            }
                         }
                     }
 
@@ -189,7 +200,7 @@ struct DetailView: View {
                             dismiss()
                         }
                     } message: {
-                        Text("Movie added to cart successfully!")
+                        Text("Movie added to successfully!")
                     }
 
                 }
