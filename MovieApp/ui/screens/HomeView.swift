@@ -65,13 +65,10 @@ struct HomeView: View {
                                                     .lineLimit(1)
                                                     .foregroundColor(.primary)
                                                 
-                                                HStack(spacing: 4) {
-                                                    Image(systemName: "star.fill")
-                                                        .foregroundColor(.yellow)
-                                                    Text(String(format: "%.1f", movie.rating ?? 0))
-                                                        .foregroundColor(.secondary)
-                                                }
+                                                Text("$\(movie.price ?? 0)")
+                                                    .foregroundColor(.secondary)
                                             }
+
                                             .frame(width: 140)
                                             .padding(8)
                                             .background(AppColor.mainColor.opacity(0.5))

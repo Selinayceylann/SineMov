@@ -135,10 +135,9 @@ struct DetailView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
 
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 24) {
                         HStack {
-                            Text("Price: \( (movie.price ?? 0) * quantity ) $")
-                                .font(.custom("Lato-Bold", size: 18))
+                            Text("Price: $\( (movie.price ?? 0) * quantity )")
                                 .foregroundColor(.black)
                                 .padding()
                                 .background(AppColor.mainColor.opacity(0.5))
