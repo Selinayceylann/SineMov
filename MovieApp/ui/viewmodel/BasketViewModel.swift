@@ -15,12 +15,12 @@ class BasketViewModel: ObservableObject {
     @Published var movieCartList = [MovieCart]()
     
     var totalPrice: Double {
-        groupedCart.reduce(0) { sum, item in
-            sum + (Double(item.price ?? 0) * Double(item.orderAmount ?? 0))
+        groupCart.reduce(0) { sum, mov in
+            sum + (Double(mov.price ?? 0) * Double(mov.orderAmount ?? 0))
         }
     }
 
-    var groupedCart: [MovieCart] {
+    var groupCart: [MovieCart] {
         var dict: [String: MovieCart] = [:]
 
         for item in movieCartList {

@@ -14,7 +14,7 @@ struct BasketView: View {
 
     var body: some View {
         VStack {
-            if viewmodel.groupedCart.isEmpty {
+            if viewmodel.groupCart.isEmpty {
                 VStack(spacing: 16) {
                     Image(systemName: "cart")
                         .resizable()
@@ -29,7 +29,7 @@ struct BasketView: View {
             } else {
                 ScrollView {
                     VStack(spacing: 16) {
-                        ForEach(viewmodel.groupedCart) { item in
+                        ForEach(viewmodel.groupCart) { item in
                             HStack(spacing: 12) {
                                 AsyncImage(url: URL(string: "http://kasimadalan.pe.hu/movies/images/\(item.image ?? "")")) { phase in
                                     switch phase {

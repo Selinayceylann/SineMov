@@ -25,9 +25,9 @@ struct HomeView: View {
                     let categories = Array(Set(viewmodel.movieList.compactMap { $0.category }))
                     
                     ForEach(categories, id: \.self) { category in
-                        let moviesByCategory = viewmodel.movieList.filter { $0.category == category }
+                        let movieCategory = viewmodel.movieList.filter { $0.category == category }
                         
-                        if !moviesByCategory.isEmpty {
+                        if !movieCategory.isEmpty {
                             Text(category)
                                 .font(.custom("Lato-Bold", size: 22))
                                 .padding(.horizontal)
@@ -35,7 +35,7 @@ struct HomeView: View {
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 LazyHStack(spacing: 16) {
-                                    ForEach(moviesByCategory) { movie in
+                                    ForEach(movieCategory) { movie in
                                         NavigationLink(destination: DetailView(movie: movie)) {
                                             VStack(spacing: 8) {
                                                 AsyncImage(url: URL(string: "http://kasimadalan.pe.hu/movies/images/\(movie.image ?? "")")) { phase in
