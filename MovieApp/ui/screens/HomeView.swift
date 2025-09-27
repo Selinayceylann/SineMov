@@ -11,7 +11,6 @@ struct HomeView: View {
     
     init() {
         NavigationBarStyle.setupNavigationBar()
-
     }
 
     @ObservedObject var viewmodel = HomeViewModel()
@@ -22,8 +21,15 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     
-                    let categories = Array(Set(viewmodel.movieList.compactMap { $0.category }))
-                    
+                    let categories = viewmodel.movieList
+                        .compactMap { $0.category }
+                        .reduce(into: [String]()) { result, category in
+                            if !result.contains(category) {
+                                result.append(category)
+                            }
+                        }
+                        .sorted() 
+
                     ForEach(categories, id: \.self) { category in
                         let movieCategory = viewmodel.movieList.filter { $0.category == category }
                         
@@ -68,7 +74,6 @@ struct HomeView: View {
                                                 Text("$\(movie.price ?? 0)")
                                                     .foregroundColor(.secondary)
                                             }
-
                                             .frame(width: 140)
                                             .padding(8)
                                             .background(AppColor.mainColor.opacity(0.5))
